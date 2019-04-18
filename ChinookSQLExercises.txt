@@ -89,6 +89,13 @@ FROM InvoiceLine il
 GROUP BY il.InvoiceId
 
 --18. `sales_agent_total_sales.sql`: Provide a query that shows total sales made by each sales agent.
+SELECT e.EmployeeId, e.FirstName as EmployeeFirstName, e.LastName as EmployeeLastName, SUM(i.Total) as TotalSales
+FROM Invoice i
+INNER JOIN Customer c ON c.CustomerId = i.CustomerId
+INNER JOIN Employee e ON e.EmployeeId = c.SupportRepId
+WHERE e.Title = 'Sales Support Agent'
+GROUP BY e.EmployeeId, e.FirstName, e.LastName
+
 --19. `top_2009_agent.sql`: Which sales agent made the most in sales in 2009? HINT: [MAX](https://docs.microsoft.com/en-us/sql/t-sql/functions/max-transact-sql)
 --20. `top_agent.sql`: Which sales agent made the most in sales over all?
 --21. `sales_agent_customer_count.sql`: Provide a query that shows the count of customers assigned to each sales agent.
