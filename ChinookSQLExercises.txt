@@ -30,9 +30,9 @@ FROM Invoice
 
 --6. `sales_agent_invoices.sql`: Provide a query that shows the invoices associated with each sales agent. The resultant table should include the Sales Agent's full name.
 Select
-[LastName]
-,[FirstName]
-,[InvoiceId]
+LastName
+,FirstName
+,InvoiceId
 ,Title
 FROM Employee, Invoice
 Where Title = 'Sales Support Agent'
@@ -125,7 +125,7 @@ AND t.GenreId = g.GenreId
 ORDER BY alb.Title
 
 --17. `invoices_line_item_count.sql`: Provide a query that shows all Invoices but includes the # of invoice line items.
-SELECT i.*, COUNT(il.InvoiceLineId) as NumberOfLineItems
+SELECT i.InvoiceId, COUNT(il.InvoiceLineId) as NumberOfLineItems
 FROM Invoice i
 JOIN InvoiceLine il
 ON i.InvoiceId = il.InvoiceId
@@ -140,6 +140,7 @@ WHERE e.Title = 'Sales Support Agent'
 GROUP BY e.EmployeeId, e.FirstName, e.LastName
 
 --19. `top_2009_agent.sql`: Which sales agent made the most in sales in 2009? HINT: [MAX](https://docs.microsoft.com/en-us/sql/t-sql/functions/max-transact-sql)
+
 --20. `top_agent.sql`: Which sales agent made the most in sales over all?
 --21. `sales_agent_customer_count.sql`: Provide a query that shows the count of customers assigned to each sales agent.
 --22. `sales_per_country.sql`: Provide a query that shows the total sales per country.
