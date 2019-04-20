@@ -125,11 +125,11 @@ AND t.GenreId = g.GenreId
 ORDER BY alb.Title
 
 --17. `invoices_line_item_count.sql`: Provide a query that shows all Invoices but includes the # of invoice line items.
-SELECT i.InvoiceId, COUNT(il.InvoiceLineId) as NumberOfLineItems
+SELECT i.*, COUNT(il.InvoiceLineId) as NumberOfLineItems
 FROM Invoice i
 JOIN InvoiceLine il
 ON i.InvoiceId = il.InvoiceId
-GROUP BY i.InvoiceId
+GROUP BY i.InvoiceId, i.CustomerId, i.BillingAddress, i.BillingCity, i.BillingCountry, i.BillingPostalCode, i.BillingState, i.InvoiceDate, i.Total
 
 --18. `sales_agent_total_sales.sql`: Provide a query that shows total sales made by each sales agent.
 SELECT e.EmployeeId, e.FirstName as EmployeeFirstName, e.LastName as EmployeeLastName, SUM(i.Total) as TotalSales
