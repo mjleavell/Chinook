@@ -191,6 +191,8 @@ FROM Invoice
 GROUP BY BillingCountry
 ORDER BY TotalSales desc
 
+--USA	523.06
+
 --24. `top_2013_track.sql`: Provide a query that shows the most purchased track of 2013.
 SELECT Top 1 t.[Name] as TrackName, COUNT(t.TrackId) as NumberOfTracksSold, t.TrackId
 FROM Track t
@@ -239,9 +241,6 @@ JOIN Track t ON t.TrackId = il.TrackId
 GROUP BY t.Name
 ORDER BY NumberOfTracksSold desc
 
--- if you do it by name, you get dazed and confused with 5 because it is on multiple led zeppelin albums
---if you do it by t.trackId then you get a bunch with 2
-
 SELECT Top 5 t.Name as TrackName, COUNT(t.TrackId) as NumberOfTracksSold
 FROM Invoice i
 JOIN InvoiceLine il ON il.InvoiceId = i.InvoiceId
@@ -277,3 +276,5 @@ JOIN Track t ON t.TrackId = i.TrackId
 JOIN MediaType mt ON mt.MediaTypeId = t.MediaTypeId
 GROUP BY mt.[Name]
 ORDER BY Total DESC
+
+--MPEG audio file	1976
